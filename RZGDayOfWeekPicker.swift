@@ -18,7 +18,7 @@ class RZGDayOfWeekPicker: UIView {
     
     var delegate: RZGDayOfWeekPickerDelegate?
     
-    // MARK: Customizable variables
+    // MARK: Attribute Inspector variables
     @IBInspectable
     var unselectedColor: UIColor = UIColor.blackColor() { didSet { customizeButtonAppearance() } }
     
@@ -70,7 +70,7 @@ class RZGDayOfWeekPicker: UIView {
     private func createButtons() {
         for _ in daysOfWeek {
             let button = UIButton()
-            button.addTarget(self, action: #selector(RZGDayOfWeekPicker.dayOfWeekButtonTapped(_:)), forControlEvents: .TouchDown)
+            button.addTarget(self, action: #selector(RZGDayOfWeekPicker.dayOfWeekButtonTapped(_:)), forControlEvents: [.TouchDown,.TouchDragEnter, .TouchDragExit])
             daysOfWeekButtons.append(button)
             addSubview(button)
         }
