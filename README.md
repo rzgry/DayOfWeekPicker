@@ -14,7 +14,7 @@ To use RZGDayOfWeekPicker simply clone/download this repo and then drag RZGDayOf
 * __unselectedColor:__ The color that appears when a day of the week is not selected
 * __textColor:__ The color of the text
 * __fontSize:__ The size of the text
-* __spacing:__  The Spacing between each day
+* __spacing:__  The spacing between each day
 
 ![Attributes Inspector Example](gifs/AttributesInspector.gif)
 
@@ -22,7 +22,7 @@ To use RZGDayOfWeekPicker simply clone/download this repo and then drag RZGDayOf
 
 Create the DayOfWeekPicker either through code or storyboard.
 
-You then directly interact with the picker using these methods
+You can then directly interact with the picker using these methods
 ```swift
 func dayIsSelectedAtIndex(index: Int) -> Bool
 func indexOfSelectedDays() -> [Int]
@@ -31,7 +31,7 @@ func deselectDayWithIndex(index: Int)
 
 ```
 
-or set your controller to be the RZGDayOfWeekPickerDelegate to receive messages whenever items are selected or deselected
+or set your controller to be the pickers delegate to receive messages whenever items are selected or deselected
 
 ```swift
 override func viewDidLoad() {
