@@ -19,6 +19,7 @@ class RZGDayOfWeekPicker: UIView {
     var delegate: RZGDayOfWeekPickerDelegate?
     
     // MARK: Attribute Inspector variables
+    
     @IBInspectable
     var unselectedColor: UIColor = UIColor.blackColor() { didSet { customizeButtonAppearance() } }
     
@@ -29,10 +30,10 @@ class RZGDayOfWeekPicker: UIView {
     var textColor: UIColor = UIColor.whiteColor() { didSet { customizeButtonAppearance() } }
     
     @IBInspectable
-    var fontSize: CGFloat = 16
+    var fontSize: CGFloat = 16 { didSet { customizeButtonAppearance() } }
     
     @IBInspectable
-    var spacing: CGFloat = 5
+    var spacing: CGFloat = 5 { didSet { positionButtons() } }
     
     // MARK: Instance variables and structs
     
@@ -67,6 +68,7 @@ class RZGDayOfWeekPicker: UIView {
     
     // MARK: Placing and Customizing the button's
     
+    /// Creates and places the buttons for each day of the week
     private func createButtons() {
         for _ in daysOfWeek {
             let button = UIButton()
@@ -76,8 +78,8 @@ class RZGDayOfWeekPicker: UIView {
         }
     }
     
-    override func layoutSubviews() {
-        
+    /// Positions each button within the frame
+    private func positionButtons() {
         let areaUsedBySpacing = spacing * CGFloat(daysOfWeek.count + 1)
         let buttonSideLength = min((frame.width - areaUsedBySpacing) / CGFloat(daysOfWeek.count), frame.height)
         let buttonSize = CGSize(width: buttonSideLength, height: buttonSideLength)
@@ -88,15 +90,20 @@ class RZGDayOfWeekPicker: UIView {
             button.layer.cornerRadius = 0.5 * button.bounds.size.width
             button.setTitle(daysOfWeek[index].name, forState: UIControlState.Normal)
         }
-        customizeButtonAppearance()
     }
     
+    /// Customizes the appearance of each button
     private func customizeButtonAppearance() {
         for (index, button) in daysOfWeekButtons.enumerate() {
             button.backgroundColor = daysOfWeek[index].selected ?  selectedColor :  unselectedColor
             button.titleLabel?.font = UIFont.systemFontOfSize(fontSize)
             button.setTitleColor(textColor, forState: UIControlState.Normal)
         }
+    }
+    
+    override func layoutSubviews() {
+        positionButtons()
+        customizeButtonAppearance()
     }
     
     // MARK: DayOfWeekPicker User Interaction
