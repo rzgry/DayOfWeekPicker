@@ -8,8 +8,16 @@
 
 import UIKit
 
+@objc protocol RZGDayOfWeekPickerDelegate {
+    optional func dayWasSelected(picker: RZGDayOfWeekPicker, selectedIndex: Int)
+    optional func dayWasDeselected(picker: RZGDayOfWeekPicker, deselectedIndex: Int)
+}
+
+
 @IBDesignable
 class RZGDayOfWeekPicker: UIView {
+    
+    var delegate: RZGDayOfWeekPickerDelegate?
     
     // MARK: Customizable variables
     @IBInspectable
@@ -121,12 +129,14 @@ class RZGDayOfWeekPicker: UIView {
     func selecteDayWithIndex(index: Int) {
         daysOfWeek[index].selected = true
         daysOfWeekButtons[index].backgroundColor = UIColor.redColor()
+        delegate?.dayWasSelected?(self, selectedIndex: index)
     }
     
     /// Sets the day with the index given to not-selected
     func deselectDayWithIndex(index: Int) {
         daysOfWeek[index].selected = false
         daysOfWeekButtons[index].backgroundColor = unselectedColor
+        delegate?.dayWasDeselected?(self, deselectedIndex: index)
     }
 
 }
