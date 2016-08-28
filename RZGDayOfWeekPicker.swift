@@ -13,7 +13,6 @@ import UIKit
     optional func dayWasDeselected(picker: RZGDayOfWeekPicker, deselectedIndex: Int)
 }
 
-
 @IBDesignable
 class RZGDayOfWeekPicker: UIView {
     
@@ -89,7 +88,6 @@ class RZGDayOfWeekPicker: UIView {
             button.layer.cornerRadius = 0.5 * button.bounds.size.width
             button.setTitle(daysOfWeek[index].name, forState: UIControlState.Normal)
         }
-        
         customizeButtonAppearance()
     }
     
@@ -108,7 +106,7 @@ class RZGDayOfWeekPicker: UIView {
             if daysOfWeek[index].selected == true {
                 deselectDayWithIndex(index)
             } else {
-                selecteDayWithIndex(index)
+                selectDayWithIndex(index)
             }
         }
     }
@@ -117,7 +115,11 @@ class RZGDayOfWeekPicker: UIView {
     
     /// Given a index of a day it returns if that day is selected.
     func dayIsSelectedAtIndex(index: Int) -> Bool {
-        return daysOfWeek[index].selected
+        if index >= 0 && index < 7 {
+            return daysOfWeek[index].selected
+        } else {
+            return false
+        }
     }
     
     /// Returns an array of ints for all selected days
@@ -126,17 +128,21 @@ class RZGDayOfWeekPicker: UIView {
     }
     
     /// Sets the day with the index given to selected
-    func selecteDayWithIndex(index: Int) {
-        daysOfWeek[index].selected = true
-        daysOfWeekButtons[index].backgroundColor = UIColor.redColor()
-        delegate?.dayWasSelected?(self, selectedIndex: index)
+    func selectDayWithIndex(index: Int) {
+        if index >= 0 && index < 7 {
+            daysOfWeek[index].selected = true
+            daysOfWeekButtons[index].backgroundColor = UIColor.redColor()
+            delegate?.dayWasSelected?(self, selectedIndex: index)
+        }
     }
     
     /// Sets the day with the index given to not-selected
     func deselectDayWithIndex(index: Int) {
-        daysOfWeek[index].selected = false
-        daysOfWeekButtons[index].backgroundColor = unselectedColor
-        delegate?.dayWasDeselected?(self, deselectedIndex: index)
+        if index >= 0 && index < 7 {
+            daysOfWeek[index].selected = false
+            daysOfWeekButtons[index].backgroundColor = unselectedColor
+            delegate?.dayWasDeselected?(self, deselectedIndex: index)
+        }
     }
 
 }
