@@ -24,7 +24,7 @@ class RZGDayOfWeekPicker: UIView {
     var unselectedColor: UIColor = UIColor.blackColor() { didSet { customizeButtonAppearance() } }
     
     @IBInspectable
-    var selectedColor: UIColor = UIColor.redColor() { didSet { customizeButtonAppearance() }}
+    var selectedColor: UIColor = UIColor.redColor() { didSet { customizeButtonAppearance() } }
     
     @IBInspectable
     var textColor: UIColor = UIColor.whiteColor() { didSet { customizeButtonAppearance() } }
