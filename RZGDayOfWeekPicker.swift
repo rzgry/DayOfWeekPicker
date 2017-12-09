@@ -138,7 +138,7 @@ class RZGDayOfWeekPicker: UIView {
     func selectDayWithIndex(index: Int) {
         if index >= 0 && index < 7 {
             daysOfWeek[index].selected = true
-            daysOfWeekButtons[index].backgroundColor = UIColor.redColor()
+            daysOfWeekButtons[index].backgroundColor = selectedColor
             delegate?.dayWasSelected?(self, selectedIndex: index)
         }
     }
