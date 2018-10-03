@@ -124,9 +124,8 @@ class RZGDayOfWeekPicker: UIView {
     func dayIsSelectedAtIndex(index: Int) -> Bool {
         if index >= 0 && index < 7 {
             return daysOfWeek[index].selected
-        } else {
-            return false
         }
+        return false
     }
     
     /// Returns an array of ints for all selected days
