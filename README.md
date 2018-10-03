@@ -1,6 +1,6 @@
 # RZGDayOfWeekPicker
 
-RZGDayOfWeekPicker is an iOS control for selecting days of the week built entirely with Swift
+RZGDayOfWeekPicker is an iOS control for selecting days of the week built entirely with Swift.
 
 ![Selecting Items Example](gifs/SelectingItems.gif)
 
